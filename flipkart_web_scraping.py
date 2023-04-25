@@ -3,6 +3,9 @@ import requests
 import pickle
 import sys
 
+# If ascess is denied we use this line
+# # headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36'}
+
 print("<h1>Gaming Producta</h1>")
 print("Put some product name that you don't want to see")
 unwanted = input(">")
@@ -30,14 +33,21 @@ for gaming in product:
     # more_info = more_info_tags.text if more_info_tags else "No Link Avilable"
 
     if unwanted not in product_name:
-        data.append({
-            'product_name': product_name.strip(),
-            'product_price': product_price.strip(),
-            'product_rating': product_rating.strip(),
-            'product_discount': product_discount.strip(),
-            'more_info': more_info
-        })
+            print(f'''product_name': {product_name.strip()}
+            'Product_Price': {product_price.strip()}
+            'Product_Rating': {product_rating.strip()}
+            'Product_Discount': {product_discount.strip()}
+            'More_Info': {more_info}''')
+            print('')
+            
+#         data.append({
+            # 'product_name': product_name.strip(),
+            # 'product_price': product_price.strip(),
+            # 'product_rating': product_rating.strip(),
+            # 'product_discount': product_discount.strip(),
+            # 'more_info': more_info
+#         })
 
-# Pickle the data
-with open('gaming_products.pkl', 'wb') as f:
-    pickle.dump(data, f)
+# # Pickle the data
+# with open('gaming_products.pkl', 'wb') as f:
+#     pickle.dump(data, f)

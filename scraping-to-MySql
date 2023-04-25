@@ -1,0 +1,41 @@
+import numpy as np
+
+def calculator(input):
+    arr = np.array(input)
+    if len(input) < 9:
+        raise ValueError("List must contain nine numbers")
+    else:
+        row_stats = []
+        col_stats = []
+        for row in arr.reshape((3,3)):
+            row_stats.append([np.mean(row),np.var(row), np.std(row)])  
+
+        for col in arr.reshape((3,3)).T:
+            col_stats.append([np.mean(row),np.var(row), np.std(row)])
+
+        all_stats = [np.mean(row),np.var(row), np.std(row)]
+
+        row_max = np.max(arr.reshape((3,3)), axis=1).tolist()  
+        row_min =  np.min(arr.reshape((3,3)), axis=1).tolist()
+        col_max =  np.max(arr.reshape((3,3)), axis=0).tolist()
+        col_min =  np.min(arr.reshape((3,3)), axis=0).tolist() 
+
+        max_all = np.max(arr)
+        min_all = np.min(arr)
+        
+        row_sum = np.sum(arr.reshape((3,3)), axis=1).tolist()
+        col_sum =  np.sum(arr.reshape((3,3)), axis=0).tolist()
+
+        output = {
+            'Mean': [row_stats, col_stats, all_stats[0]],
+            'var' : [row_stats, col_stats, all_stats[1]],
+            'std' : [row_stats, col_stats,all_stats[2]],
+            'max' : [row_max, col_max, max_all],
+            'min' : [row_min, col_min, min_all],
+            'sum' : [row_sum, col_sum, np.sum(arr)]
+        }
+        return output
+
+# num = [0,1,2,3,4,5,6,7,8]
+# print(calculator(num))
+print(calculator([1,2,3,4,5,6,7,8,9]))
